@@ -34,9 +34,6 @@ export class News extends Component {
   }
 
   handleNext = async()=>{
-    if((this.state.page + 1 > Math.ceil(this.state.totalResults/20))){
-
-    }else{
       console.log("Next");
       let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=4f09fa38293646928aece10b852f5bbd&page=${this.state.page + 1}&pageSize=20`;
       let data =  await fetch(url);
@@ -44,14 +41,13 @@ export class News extends Component {
       console.log (parsedData);
       this.setState({articles: parsedData.articles,
       page: this.state.page + 1})
-    }
   }
 
 
   render() {
     return (
       <div className='container my-3'>
-        <h1>Your Daily Shorts</h1>
+        <div className="text-center"> <h1>Your Daily Shorts</h1></div>
         <div className="row">
           {this.state.articles.map((element)=>{ 
             return <div className="col-md-4" key={element.url}>
@@ -60,7 +56,7 @@ export class News extends Component {
           })}
           <div className="container d-flex justify-content-between">
           <button disabled = {this.state.page<=1} type="button" className="btn btn-dark" onClick={this.handlePrev}> &larr; Pervious</button>
-          <button type="button" className="btn btn-dark" onClick={this.handleNext}>Next &rarr;</button>
+          <button disabled = {this.state.page + 1 > Math.ceil(this.state.totalResults/20)} type="button" className="btn btn-dark" onClick={this.handleNext}>Next &rarr;</button>
           </div>
           </div>
       </div>
