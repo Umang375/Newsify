@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import LoadSpin from './LoadSpin';
 import NewsItem from './NewsItem'
 
 
@@ -47,7 +48,8 @@ export class News extends Component {
   render() {
     return (
       <div className='container my-3'>
-        <div className="text-center"> <h1>Your Daily Shorts</h1></div>
+         <h1 className='text-center'>Your Daily Shorts</h1>
+         <LoadSpin/>
         <div className="row">
           {this.state.articles.map((element)=>{ 
             return <div className="col-md-4" key={element.url}>
