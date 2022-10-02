@@ -27,21 +27,31 @@ export class News extends Component {
   handlePrev = async()=>{
     console.log("Previous");
     let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=4f09fa38293646928aece10b852f5bbd&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
+    this.setState({loading: true});
     let data =  await fetch(url);
     let parsedData = await data.json();
     console.log (parsedData);
-    this.setState({articles: parsedData.articles,
-    page: this.state.page - 1})
+    this.setState({
+      articles: parsedData.articles,
+      page: this.state.page - 1,
+      loading: false
+    })
   }
 
   handleNext = async()=>{
       console.log("Next");
-      let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=4f09fa38293646928aece10b852f5bbd&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
-      let data =  await fetch(url);
-      let parsedData = await data.json();
-      console.log (parsedData);
-      this.setState({articles: parsedData.articles,
-      page: this.state.page + 1})
+      if(!(this.state.page + 1 > Math.ceil(this.state.totalResults/20))){
+        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=4f09fa38293646928aece10b852f5bbd&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+        this.setState({loading: true});
+        let data =  await fetch(url);
+        let parsedData = await data.json();
+        console.log (parsedData);
+        this.setState({
+          articles: parsedData.articles,
+          page: this.state.page + 1,
+          loading: false
+        })
+      }
   }
 
 
@@ -49,9 +59,9 @@ export class News extends Component {
     return (
       <div className='container my-3'>
          <h1 className='text-center'>Your Daily Shorts</h1>
-         <LoadSpin/>
+         {this.state.loading && <LoadSpin/>}
         <div className="row">
-          {this.state.articles.map((element)=>{ 
+          {!this.state.loading && this.state.articles.map((element)=>{ 
             return <div className="col-md-4" key={element.url}>
               <NewsItem title = {element.title} description= {element.description?element.description.slice(0,88):""} imageurl = {element.urlToImage} newsUrl = {element.url} />
             </div>
