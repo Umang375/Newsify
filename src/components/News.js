@@ -74,7 +74,7 @@ export class News extends Component {
         <div className="row">
           {!this.state.loading && this.state.articles.map((element)=>{ 
             return <div className="col-md-4" key={element.url}>
-              <NewsItem title = {element.title} description= {element.description?element.description.slice(0,88):""} imageurl = {element.urlToImage} newsUrl = {element.url} />
+              <NewsItem title = {element.title} description= {element.description?element.description.slice(0,88):""} imageurl = {element.urlToImage} newsUrl = {element.url} author= {element.author} date = {element.publishedAt} source = {element.source.name}/>
             </div>
           })}
           <div className="container d-flex justify-content-between">
