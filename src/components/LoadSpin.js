@@ -6,7 +6,7 @@ export class LoadSpin extends Component {
   render() {
     return (
       <div className='text-center'>
-        <img src= {loading} alt="loading.gif" />
+        <img src= {loading} alt="loading" />
       </div>
     )
   }

@@ -8,7 +8,7 @@ export class NewsItem extends Component {
     return (
       <div className = "my-3">
         <div className="card" style={{width: "18rem"}}>
-          <img src= {imageurl} className="card-img-top" alt='...'/>
+          <img src= {!imageurl ? "https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg": imageurl} className="card-img-top" alt='...'/>
           <div className="card-body">
             <h5 className="card-title">{title}<span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger " style={{left:'90%', zIndex: '1'}}> {source}
             </span></h5>
@@ -19,7 +19,7 @@ export class NewsItem extends Component {
         </div>
       </div>
     )
-  }
+  }  
 }
 
 export default NewsItem
