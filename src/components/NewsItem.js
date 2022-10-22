@@ -7,7 +7,7 @@ export class NewsItem extends Component {
     let {title, description, imageurl, newsUrl, author, date, source} = this.props;
     return (
       <div className = "my-3">
-        <div className="card" style={{width: "18rem"}}>
+        <div className="card">
           <div style={{display: 'flex',
             justifyContent: 'flex-end',
             position: 'absolute',
@@ -15,7 +15,7 @@ export class NewsItem extends Component {
           }}>
             <span className="badge rounded-pill bg-danger "> {source}</span>
           </div>
-          <img src= {!imageurl ? "https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg": imageurl} className="card-img-top" alt='...'/>
+          <img src= {!imageurl ? "https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg": imageurl} className="card-img-top" alt={"https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg"}/>
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
             <p className="card-text">{description}...</p>
